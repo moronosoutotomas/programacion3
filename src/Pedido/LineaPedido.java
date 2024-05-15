@@ -1,18 +1,18 @@
 package Pedido;
 
-import java.util.ArrayList;
-
 public class LineaPedido {
 
 	private int id;
-	private int cantidad;
-	ArrayList<Producto> lineaPedido;
+	private int cantidadProducto;
+	private Producto producto;
+
+	public LineaPedido() {
+	}
 
 	public LineaPedido(int id, int cantidad, Producto producto) {
 		this.id = id;
-		this.cantidad = cantidad;
-		producto = new Producto();
-		lineaPedido = new ArrayList<Producto>();
+		this.cantidadProducto = cantidad;
+		this.producto = new Producto();
 	}
 
 	public int getId() {
@@ -23,22 +23,39 @@ public class LineaPedido {
 		this.id = id;
 	}
 
-	public int getCantidad() {
-		return cantidad;
+	public int getCantidadProducto() {
+		return cantidadProducto;
 	}
 
-	public void setCantidad(int cantidad) {
-		this.cantidad = cantidad;
+	public void setCantidadProducto(int cantidadProducto) {
+		this.cantidadProducto = cantidadProducto;
 	}
 
+	public Producto getProducto() {
+		return producto;
+	}
+
+	public void setProducto(Producto producto) {
+		this.producto = producto;
+	}
+
+	/**
+	 * Método que calcula el subtotal de la línea de pedido de un producto.
+	 * 
+	 * @return int
+	 */
 	public int calcularSubtotalLineaPedido() {
-
+		try {
+			return producto.getPrecio() * this.getCantidadProducto();
+		} catch (NullPointerException e) {
+			System.out.println("EL producto no tiene un precio asociado todavía.");
+		}
 		return 0;
 	}
 
 	@Override
 	public String toString() {
-		return "LineaPedido [id=" + id + ", cantidad=" + cantidad + "]";
+		return "LineaPedido \nid=" + id + "\ncantidad=" + cantidadProducto + "\nProducto=" + producto.toString();
 	}
 
 } // clase
