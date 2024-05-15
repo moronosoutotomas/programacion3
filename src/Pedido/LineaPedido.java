@@ -12,7 +12,7 @@ public class LineaPedido {
 	public LineaPedido(int id, int cantidad, Producto producto) {
 		this.id = id;
 		this.cantidadProducto = cantidad;
-		this.producto = new Producto();
+		this.producto = producto;
 	}
 
 	public int getId() {
@@ -44,7 +44,7 @@ public class LineaPedido {
 	 * 
 	 * @return int
 	 */
-	public int calcularSubtotalLineaPedido() {
+	public double calcularSubtotalLineaPedido() {
 		try {
 			return producto.getPrecio() * this.getCantidadProducto();
 		} catch (NullPointerException e) {

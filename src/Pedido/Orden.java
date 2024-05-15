@@ -4,19 +4,14 @@ import java.util.ArrayList;
 
 public class Orden {
 
+	public static final double IVA = 21;
 	private int id;
-	ArrayList<LineaPedido> orden;
-	LineaPedido lineaPedido;
+	ArrayList<LineaPedido> itemsPedido;
 
 	public Orden(int id) {
-		this.id = id;
-	}
-
-	public Orden(int id, ArrayList<LineaPedido> orden) {
 		super();
 		this.id = id;
-		this.orden = orden;
-		lineaPedido = new LineaPedido();
+		this.itemsPedido = new ArrayList<LineaPedido>();
 	}
 
 	public int getId() {
@@ -27,21 +22,15 @@ public class Orden {
 		this.id = id;
 	}
 
-//	public ArrayList<LineaPedido> getFactura() {
-//		return factura;
-//	}
-//
-//	public void setFactura(ArrayList<LineaPedido> factura) {
-//		this.factura = factura;
-//	}
-
 	/**
 	 * Método que añade una lista de pedido al ArrayList orden.
 	 * 
-	 * @param lp
+	 * @param identificador
+	 * @param cantidad
+	 * @param producto
 	 */
-	public void añadirItem(LineaPedido lp) {
-		orden.add(lp);
+	public void addItem(int identificador, int cantidad, Producto producto) {
+		this.itemsPedido.add(new LineaPedido(identificador, cantidad, producto));
 	}
 
 	/**
@@ -52,7 +41,7 @@ public class Orden {
 	 */
 	public int calcularTotalOrden() {
 		int total = 0;
-		for (LineaPedido lp : orden) {
+		for (LineaPedido lp : itemsPedido) {
 			total += lp.calcularSubtotalLineaPedido();
 		}
 		return total;
@@ -65,7 +54,7 @@ public class Orden {
 	 */
 	public String listarOrden() {
 		String str = "";
-		for (LineaPedido lp : orden) {
+		for (LineaPedido lp : itemsPedido) {
 			lp.toString();
 		}
 		return str;
@@ -73,8 +62,26 @@ public class Orden {
 
 	@Override
 	public String toString() {
-		return "Orden \nid=" + id + "\norden=" + orden + "\nLineas de pedido=" + listarOrden() + "\nPrecio total="
+		return "Orden \nid=" + id + "\norden=" + itemsPedido + "\nLineas de pedido=" + listarOrden() + "\nPrecio total="
 				+ calcularTotalOrden();
+	}
+
+	public String imprimirOrden() {
+
+		String lineas = "Orden id= " + this.getId() + "\n" + "Total orden: " + this.calcularTotalOrden() + "€" + "\n"
+				+ "" + "Lineas pedido: " + "\n\n";
+
+		for (LineaPedido lp : itemsPedido) {
+			lineas = lineas + "Producto:  " + lp.getProducto().getNombre() + "\n\t" + "Precio unitario: "
+					+ lp.getProducto().getPrecio() + "€" + "\n\t" + "Cantidad: " + lp.getCantidadProducto() + " uds"
+					+ " \n\t" + "Total linea:" + lp.calcularSubtotalLineaPedido() + "€" + "\n\n";
+		}
+
+		lineas = lineas + "=========== TOTALES ===========\n";
+		lineas = lineas + "· Sin IVA: " + this.calcularTotalOrden() + "€" + "\n";
+		lineas = lineas + "· IVA: " + IVA + "€" + "\n";
+		lineas = lineas + "· TOTAL: " + this.calcularTotalOrden() * (1 - IVA / 100.0) + "€";
+		return lineas;
 	}
 
 } // clase

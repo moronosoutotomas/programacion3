@@ -5,13 +5,12 @@ public class Producto {
 	private int id;
 	private String nombre;
 	private String descripcion;
-	private int precio;
+	private double precio;
 
 	public Producto() {
 	}
 
 	public Producto(int id, String nombre, String descripcion, int precio) {
-		super();
 		this.id = id;
 		this.nombre = nombre;
 		this.descripcion = descripcion;
@@ -42,7 +41,7 @@ public class Producto {
 		this.descripcion = descripcion;
 	}
 
-	public int getPrecio() {
+	public double getPrecio() {
 		return precio;
 	}
 
