@@ -7,7 +7,6 @@ public class Persona {
 	int edad;
 
 	public Persona(String nombre, String apellidos, int edad) {
-		super();
 		this.nombre = nombre;
 		this.apellidos = apellidos;
 		this.edad = edad;
