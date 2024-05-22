@@ -3,9 +3,6 @@ package Ficheros;
 import java.io.FileWriter;
 import java.io.PrintWriter;
 
-// TODO - Enunciado de examen: coge de un archivo un texto pon las vocales en
-// mayúsculas y escríbelo en otro fichero.
-
 public class EscribirArchivo {
 
 	public static void main(String[] args) {
@@ -22,7 +19,7 @@ public class EscribirArchivo {
 			for (int i = 0; i < 10; i++) {
 				impresor.println("Linea " + i);
 			}
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {

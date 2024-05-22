@@ -18,7 +18,7 @@ public class Asignatura implements Serializable {
 	void imprimir() {
 		System.out.println("Codigo de la asignatura = " + codigo);
 		System.out.println("Nombre de la asignatura = " + nombre);
-		System.out.println("Cantidad de creitos = " + creditos);
+		System.out.println("Cantidad de creditos = " + creditos);
 	}
 	
 	void guardar() {
