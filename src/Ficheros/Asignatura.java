@@ -7,8 +7,11 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class Asignatura implements Serializable {
+
+	static String NOMBRE_FICHERO = "notas.dat";
 
 	int codigo;
 	String nombre;
@@ -21,9 +24,42 @@ public class Asignatura implements Serializable {
 	}
 
 	void imprimir() {
-		System.out.println("codigo de la asignatura = " + codigo);
+		System.out.println("Codigo de la asignatura = " + codigo);
 		System.out.println("Nombre de la asignatura = " + nombre);
 		System.out.println("Cantidad de creditos = " + creditos);
+	}
+
+	/**
+	 * Método que almacena la colección de asignaturas en un archivo.
+	 * 
+	 * @param conjunto
+	 */
+	public static void guardar(ArrayList<Asignatura> conjunto) {
+		try {
+			FileOutputStream fileOut = new FileOutputStream(NOMBRE_FICHERO);
+			ObjectOutputStream objectOut = new ObjectOutputStream(fileOut);
+			objectOut.writeObject(conjunto);
+			objectOut.close();
+			System.out.println("Asignaturas guardadas en archivo correctamente.");
+
+		} catch (IOException kagada) {
+			System.out.println("Error al guardar en archivo: " + kagada.getMessage());
+		}
+	}
+
+	public static ArrayList<Asignatura> cargar() {
+		ArrayList<Asignatura> notas = new ArrayList<Asignatura>();
+		try {
+			FileInputStream fileIn = new FileInputStream(NOMBRE_FICHERO);
+			ObjectInputStream objectIn = new ObjectInputStream(fileIn);
+			notas = (ArrayList<Asignatura>) objectIn.readObject();
+			objectIn.close();
+			fileIn.close();
+			System.out.println("Asignaturas cargadas desde archivo correctamente");
+		} catch (IOException | ClassNotFoundException kagada) {
+			System.out.println("Error al guardar en archivo: " + kagada.getMessage());
+		}
+		return notas;
 	}
 
 	/**
@@ -40,7 +76,7 @@ public class Asignatura implements Serializable {
 			salida.writeObject(this); // Escribe el objeto en el flujo de salida
 			salida.close(); // Cierra el flujo de salida de datos
 		} catch (IOException e) {
-			System.out.println("No se puedo escribir en el archivo");
+			System.out.println("No se pudo escribir en el archivo");
 		}
 	}
 
