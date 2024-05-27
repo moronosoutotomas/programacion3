@@ -48,7 +48,7 @@ public class Persona {
 
 	@Override
 	public String toString() {
-		return nombre + " - " + apellidos + " - " + telefono + " - " + direccion;
+		return nombre + "-" + apellidos + "-" + telefono + "-" + direccion;
 	}
 
 } // clase
