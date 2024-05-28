@@ -1,6 +1,5 @@
-package JavaSwing;
+package JavaSwingFicheroListaPersonas;
 
-import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -31,7 +30,7 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
 	 * Constructor de la clase VentanaPrincipal
 	 */
 	public VentanaPrincipal() {
-		lista = new ListaPersonas(); // Crea la lista de personas
+		lista = new ListaPersonas(); // Crea la lista de personas desde cero
 		inicio();
 		setTitle("Personas"); // Establece el título de la ventana
 		setSize(270, 350); // Establece el tamaño de la ventana
@@ -195,6 +194,16 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
 	private void guardarListaPersonas() {
 		FicheroListaDePersonas fldp = new FicheroListaDePersonas();
 		fldp.guardarEnFichero(lista);
+	}
+
+	/**
+	 * Método que guarda la persona en cuestión en el fichero con la lista de
+	 * personas
+	 */
+	private void cargarListaPersonas() {
+//		borrar lista
+//		setModel
+		
 	}
 
 } // clase

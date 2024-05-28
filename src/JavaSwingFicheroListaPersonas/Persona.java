@@ -1,6 +1,8 @@
-package JavaSwing;
+package JavaSwingFicheroListaPersonas;
 
-public class Persona {
+import java.io.Serializable;
+
+public class Persona implements Serializable {
 
 	String nombre; // Atributo que identifica el nombre de una persona
 	String apellidos; // Atributo que identifica los apellidos de una persona

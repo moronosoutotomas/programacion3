@@ -1,4 +1,4 @@
-package JavaSwing;
+package JavaSwingFicheroListaPersonas;
 
 import java.util.ArrayList;
 
@@ -35,6 +35,16 @@ public class ListaPersonas {
 	 */
 	public void borrarLista() {
 		listaPersonas.removeAll(listaPersonas);
+	}
+
+	////////// Método de Pepe/Luis
+	public String guardarEnArchivo() {
+
+	}
+
+	////////// Método de Pepe/Luis
+	public ArrayList<Persona> cargarDesdeArchivo(String nombrefichero) {
+
 	}
 
 } // clase

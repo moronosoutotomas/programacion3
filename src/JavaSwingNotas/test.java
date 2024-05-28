@@ -1,4 +1,4 @@
-package JavaSwing;
+package JavaSwingNotas;
 
 public class test {
 
