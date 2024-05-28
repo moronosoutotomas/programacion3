@@ -1,5 +1,10 @@
 package JavaSwingFicheroListaPersonas;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 public class ListaPersonas {
@@ -37,14 +42,56 @@ public class ListaPersonas {
 		listaPersonas.removeAll(listaPersonas);
 	}
 
-	////////// Método de Pepe/Luis
-	public String guardarEnArchivo() {
+	/**
+	 * Método que guarda la lista de personas en un fichero dado
+	 * @param namefichero
+	 * @return
+	 */
+	public String guardarEnArchivo(String namefichero) {
+		ArrayList<Persona> asig = this.listaPersonas;
+		String mensaje = "Error";
+		try {
 
+			FileOutputStream fileOut = new FileOutputStream(namefichero);
+			ObjectOutputStream objectOut = new ObjectOutputStream(fileOut);
+
+			objectOut.writeObject(asig);
+
+			objectOut.close();
+			fileOut.close();
+			mensaje = "Guardados en archivo correctamente.";
+
+		} catch (IOException e) {
+			mensaje = "Error al guardar en archivo: " + e.getMessage();
+
+		}
+		return mensaje;
 	}
 
-	////////// Método de Pepe/Luis
-	public ArrayList<Persona> cargarDesdeArchivo(String nombrefichero) {
+	/**
+	 * Método que carga la lista de personas de un fichero dado
+	 * @param namefichero
+	 * @return
+	 */
+	public ArrayList<Persona> cargarDesdeArchivo(String namefichero) {
 
+		try {
+			FileInputStream fileIn = new FileInputStream(namefichero);
+			ObjectInputStream objectIn = new ObjectInputStream(fileIn);
+			// System.out.println("aqui llego");
+			this.listaPersonas = (ArrayList<Persona>) objectIn.readObject();
+
+			objectIn.close();
+			fileIn.close();
+			System.out.println("Cargados desde archivo correctamente.");
+			;
+
+		} catch (IOException | ClassNotFoundException cagada) {
+			System.out.println("Error al cargar desde archivo: " + cagada.getMessage());
+
+		}
+
+		return this.listaPersonas;
 	}
 
 } // clase

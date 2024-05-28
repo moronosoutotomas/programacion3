@@ -3,6 +3,7 @@ package JavaSwingFicheroListaPersonas;
 import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
@@ -22,8 +23,8 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
 	private JLabel nombre, apellidos, telefono, direccion; // Etiquetas estáticas para los nombres de los atributos
 	private JTextField campoNombre, campoApellidos, campoTelefono, campoDireccion; // Campos de ingreso de texto
 	private JButton añadir, eliminar, borrarLista, guardar; // Botones
-	private JList listaPersonas; // Lista de personas
-	private DefaultListModel modelo; // Objeto que modela la lista
+	private JList jListListaPersonas; // Lista de personas
+	private DefaultListModel modeloJList; // Objeto que modela la lista
 	private JScrollPane scrollLista; // Barra de desplazamiento vertical - Interfaz gráfica de usuario 471
 
 	/**
@@ -38,6 +39,7 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
 		setResizable(false); // Establece que el tamaño de la ventana no se puede cambiar
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Establece que el botón de cerrar permitirá salir de la
 														// aplicación
+		cargarListaPersonas();
 	}
 
 	/**
@@ -97,14 +99,15 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
 		borrarLista.addActionListener(this); // Agrega al botón un ActionListener para que gestione eventos del botón
 
 // 		Establece la lista gráfica de personas
-		listaPersonas = new JList();
-		listaPersonas.setSelectionMode(ListSelectionModel.SINGLE_SELECTION); // Establece que se pueda seleccionar
-																				// solamente un elemento de la lista
-		modelo = new DefaultListModel();
+		jListListaPersonas = new JList();
+		jListListaPersonas.setSelectionMode(ListSelectionModel.SINGLE_SELECTION); // Establece que se pueda seleccionar
+																					// solamente un elemento de la lista
+		modeloJList = new DefaultListModel();
 
 		scrollLista = new JScrollPane(); // Establece una barra de desplazamiento vertical
 		scrollLista.setBounds(20, 190, 220, 80); // Establece la posición de la barra de desplazamiento vertical
-		scrollLista.setViewportView(listaPersonas); // Asocia la barra de desplazamiento vertical a la lista de personas
+		scrollLista.setViewportView(jListListaPersonas); // Asocia la barra de desplazamiento vertical a la lista de
+															// personas
 
 // 		Se añade cada componente gráfico al contenedor de la ventana
 		contenedor.add(nombre);
@@ -131,7 +134,7 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
 			añadirPersona(); // Se invoca añadir persona
 		}
 		if (evento.getSource() == eliminar) {
-			eliminarPersona(listaPersonas.getSelectedIndex());
+			eliminarPersona(jListListaPersonas.getSelectedIndex());
 		}
 		if (evento.getSource() == borrarLista) {
 			borrarLista();
@@ -152,11 +155,11 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
 
 		lista.añadirPersona(p);
 
-		String elemento = campoNombre.getText() + "-" + campoApellidos.getText() + "-" + campoTelefono.getText() + "-"
-				+ campoDireccion.getText();
-
-		modelo.addElement(elemento);
-		listaPersonas.setModel(modelo);
+//		String elemento = campoNombre.getText() + "-" + campoApellidos.getText() + "-" + campoTelefono.getText() + "-"
+//				+ campoDireccion.getText(); // se supone que esto también vale
+		String elemento = p.toString();
+		modeloJList.addElement(elemento);
+		jListListaPersonas.setModel(modeloJList);
 
 		campoNombre.setText("");
 		campoApellidos.setText("");
@@ -172,7 +175,7 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
 	 */
 	private void eliminarPersona(int indice) {
 		if (indice >= 0) {
-			modelo.remove(indice);
+			modeloJList.remove(indice);
 			lista.eliminarPersona(indice);
 		} else {
 			JOptionPane.showMessageDialog(null, "Debe seleccionar un elemento", "Error", JOptionPane.ERROR_MESSAGE);
@@ -184,7 +187,7 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
 	 */
 	private void borrarLista() {
 		lista.borrarLista();
-		modelo.clear(); // Limpia el JList, la lista gráfica de personas
+		modeloJList.clear(); // Limpia el JList, la lista gráfica de personas
 	}
 
 	/**
@@ -192,8 +195,8 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
 	 * personas
 	 */
 	private void guardarListaPersonas() {
-		FicheroListaDePersonas fldp = new FicheroListaDePersonas();
-		fldp.guardarEnFichero(lista);
+		lista.guardarEnArchivo(
+				"C:\\Users\\Tomás\\eclipse-workspace\\tercero\\src\\JavaSwingFicheroListaPersonas\\ListaPersonas.obj");
 	}
 
 	/**
@@ -201,9 +204,13 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
 	 * personas
 	 */
 	private void cargarListaPersonas() {
-//		borrar lista
-//		setModel
-		
+		ArrayList<Persona> personas = lista.cargarDesdeArchivo(
+				"C:\\Users\\Tomás\\eclipse-workspace\\tercero\\src\\JavaSwingFicheroListaPersonas\\ListaPersonas.obj");
+
+		for (Persona p : personas) {
+			modeloJList.addElement(p);
+		}
+		jListListaPersonas.setModel(modeloJList);
 	}
 
 } // clase
