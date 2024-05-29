@@ -11,7 +11,7 @@ import javax.swing.JLabel;
 public class VentanaPrincipal extends JFrame implements ActionListener {
 
 	private Container contenedor;
-	private JButton cilindro, esfera, piramide;
+	private JButton cilindro, esfera, piramide, cono;
 
 	public VentanaPrincipal() {
 		inicio();
@@ -40,9 +40,15 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
 		piramide.setBounds(225, 50, 100, 23);
 		piramide.addActionListener(this);
 
+		cono = new JButton();
+		cono.setText("Cono");
+		cono.setBounds(125, 80, 80, 23);
+		cono.addActionListener(this);
+
 		contenedor.add(cilindro);
 		contenedor.add(esfera);
 		contenedor.add(piramide);
+		contenedor.add(cono);
 	}
 
 	@Override
@@ -59,7 +65,10 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
 			VentanaPiramide piramide = new VentanaPiramide();
 			piramide.setVisible(true);
 		}
-
+		if (evento.getSource() == cono) {
+			VentanaCono cono = new VentanaCono();
+			cono.setVisible(true);
+		}
 	}
 
 } // clase

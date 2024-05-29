@@ -2,9 +2,9 @@ package JavaSwingFiguras;
 
 public class Piramide extends FiguraGeometrica {
 
-	private double base; /* Atributo que identifica la base de una pirámide */
-	private double altura;/* Atributo que identifica la altura de una pirámide */
-	private double apotema; /* Atributo que identifica el apotema de una pirámide */
+	private double base; // Atributo que identifica la base de una pirámide
+	private double altura; // Atributo que identifica la altura de una pirámide
+	private double apotema; // Atributo que identifica el apotema de una pirámide
 
 	/**
 	 * Constructor de la clase Pirámide
@@ -17,8 +17,8 @@ public class Piramide extends FiguraGeometrica {
 		this.base = base;
 		this.altura = altura;
 		this.apotema = apotema;
-		this.setVolumen(calcularVolumen()); /* Calcula el volumen y establece su atributo */
-		this.setSuperficie(calcularSuperficie()); /* Calcula la superficie y establece su atributo */
+		this.setVolumen(calcularVolumen()); // Calcula el volumen y establece su atributo
+		this.setSuperficie(calcularSuperficie()); // Calcula la superficie y establece su atributo
 	}
 
 	/**

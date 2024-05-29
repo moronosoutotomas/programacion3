@@ -18,10 +18,8 @@ public class VentanaPiramide extends JFrame implements ActionListener {
 	 * calcular
 	 */
 	private JLabel base, altura, apotema, volumen, superficie;
-// Campos de texto a ingresar
 	private JTextField campoBase, campoAltura, campoApotema;
-// Botón para realizar los cálculos numéricos
-	private JButton calcular;
+	private JButton calcular; // Botón para realizar los cálculos numéricos
 
 	/**
 	 * Constructor de la clase VentanaPirámide
@@ -30,24 +28,16 @@ public class VentanaPiramide extends JFrame implements ActionListener {
 		inicio();
 		setTitle("Pirámide"); // Establece el título de la ventana
 		setSize(280, 240); // Establece el tamaño de la ventanaInterfaz gráfica de usuario 509
-		setLocationRelativeTo(null); /*
-										 * La ventana se posiciona en el centro de la pantalla
-										 */
-		setResizable(false); /*
-								 * Establece que el botón de cerrar permitirá salir de la aplicación
-								 */
+		setLocationRelativeTo(null); // La ventana se posiciona en el centro de la pantalla
+		setResizable(false); // Establece que el botón de cerrar permitirá salir de la aplicación
 	}
 
 	/**
 	 * Método que crea la ventana con sus diferentes componentes gráficos
 	 */
 	private void inicio() {
-		contenedor = getContentPane(); /*
-										 * Obtiene el panel de contenidos de la ventana
-										 */
-		contenedor.setLayout(null); /*
-									 * Establece que el contenedor no tiene un layout
-									 */
+		contenedor = getContentPane(); // Obtiene el panel de contenidos de la ventana
+		contenedor.setLayout(null); // Establece que el contenedor no tiene un layout
 		/*
 		 * Establece la etiqueta y campo de texto para la base de la pirámide
 		 */
@@ -121,10 +111,10 @@ public class VentanaPiramide extends JFrame implements ActionListener {
 	/**
 	 * Método que gestiona los eventos generados en la ventana de la esfera throws
 	 * Exception Excepción al ingresar un campo nulo o error en formato de
-	 * númeroInterfaz gráfica de usuario 511
+	 * número
 	 */
 	public void actionPerformed(ActionEvent event) {
-		Piramide pirámide;
+		Piramide piramide;
 		boolean error = false;
 		double base = 0;
 		double altura = 0;
@@ -137,11 +127,11 @@ public class VentanaPiramide extends JFrame implements ActionListener {
 // Se obtiene y convierte el valor numérico del apotema
 			apotema = Double.parseDouble(campoApotema.getText());
 // Se crea un objeto Pirámide
-			pirámide = new Piramide(base, altura, apotema);
+			piramide = new Piramide(base, altura, apotema);
 // Se muestra el volumen
-			volumen.setText("Volumen (cm3): " + String.format("%.2f", pirámide.calcularVolumen()));
+			volumen.setText("Volumen (cm3): " + String.format("%.2f", piramide.calcularVolumen()));
 // Se muestra la superficie
-			superficie.setText("Superficie (cm2): " + String.format("%.2f", pirámide.calcularSuperficie()));
+			superficie.setText("Superficie (cm2): " + String.format("%.2f", piramide.calcularSuperficie()));
 		} catch (Exception e) {
 			error = true; // Si ocurre una excepción
 		} finally {
