@@ -12,6 +12,7 @@ import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JSeparator;
 
 public class VentanaPrincipal extends JFrame implements ActionListener {
@@ -50,26 +51,13 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
 		itemMenu1 = new JMenuItem("Agregar empleado");
 		itemMenu2 = new JMenuItem("Calcular nómina");
 		itemMenu3 = new JMenuItem("Guardar archivo");
-		menuOpciones.add(itemMenu1); /*
-										 * Se agrega el ítem de menú 1 al menú
-										 */
-		menuOpciones.add(itemMenu2); /*
-										 * Se agrega el ítem de menú 2 al menú
-										 */
-		menuOpciones.add(new JSeparator()); /*
-											 * Se agrega una línea divisoria
-											 */
-		menuOpciones.add(itemMenu3); /*
-										 * Se agrega el ítem de menú 3 al menú
-										 */
-		barraMenu.add(menuOpciones); /*
-										 * Se agregan las opciones de menú al menú
-										 */
+		menuOpciones.add(itemMenu1); // Se agrega el ítem de menú 1 al menú
+		menuOpciones.add(itemMenu2); // Se agrega el ítem de menú 2 al menú
+		menuOpciones.add(new JSeparator()); // Se agrega una línea divisoria
+		menuOpciones.add(itemMenu3); // Se agrega el ítem de menú 3 al menú
+		barraMenu.add(menuOpciones); // Se agregan las opciones de menú al menú
 		setJMenuBar(barraMenu); // Se agrega el menú a la ventana
-		/*
-		 * Agrega al ítem de menú un ActionListener para que gestione eventos del ítem
-		 * de menú
-		 */
+
 		itemMenu1.addActionListener(this);
 		itemMenu2.addActionListener(this);
 		itemMenu3.addActionListener(this);
@@ -81,62 +69,38 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
 	 */
 	@Override
 	public void actionPerformed(ActionEvent evento) {
-		if (evento.getSource() == itemMenu1) { // Se selecciona el ítem de menú 1
-// Se crea la ventana de agregar empleado
+		if (evento.getSource() == itemMenu1) {
 			VentanaAgregarEmpleado ventanaAgregar = new VentanaAgregarEmpleado(empleados);
 			ventanaAgregar.setVisible(true); // Se hace visible la ventana
 		}
-		if (evento.getSource() == itemMenu2) { /*
-												 * Se selecciona el ítem de menú 2
-												 */
-// Se crea la ventana de nómina
+		if (evento.getSource() == itemMenu2) {
 			VentanaNómina ventanaNómina = new VentanaNómina(empleados);
-			ventanaNómina.setVisible(true); // Se hace visible la ventana
+			ventanaNómina.setVisible(true);
 		}
-		if (evento.getSource() == itemMenu3) { /*
-												 * Se selecciona el ítem de menú 3
-												 */
-			JFileChooser fc = new JFileChooser(); /*
-													 * Crea un selector de archivo
-													 */
+		if (evento.getSource() == itemMenu3) {
+			JFileChooser fc = new JFileChooser();
 			fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-// Es un selector de directorio
-			int respuesta = fc.showOpenDialog(this); /*
-														 * Se muestra el selector de directorio en pantalla
-														 */
-			if (respuesta == JFileChooser.APPROVE_OPTION) { /*
-															 * Si se pulsa aceptar en el selector
-															 */
-				File directorioElegido = fc.getSelectedFile(); /*
-																 * Se obtiene el directorio seleccionado
-																 */
-				String nombre = directorioElegido.getName(); /*
-																 * Se obtiene el nombre del directorio
-																 */
+
+			int respuesta = fc.showOpenDialog(this);
+			if (respuesta == JFileChooser.APPROVE_OPTION) {
+				File directorioElegido = fc.getSelectedFile();
+				String nombre = directorioElegido.getName();
+
 				try {
-// Convierte los datos de los empleados en texto
 					String contenido = empleados.convertirTexto();
-// Se asigna el nombre del archivo de texto
 					File file = new File(nombre + "\\" + "Nómina.txt");
-					file.createNewFile(); // Se crea el archivo de texto
+					file.createNewFile();
 					FileWriter fw = new FileWriter(file);
-					BufferedWriter bw = new BufferedWriter(fw); /*
-																 * Se crea el flujo de escritura de datos
-																 */
-					bw.write(contenido); /*
-											 * Se escriben los datos en el archivo
-											 */
+					BufferedWriter bw = new BufferedWriter(fw);
+					bw.write(contenido);
 					bw.close(); // Se cierra el archivo
 					String texto = "El archivo de la nómina Nómina.txt se ha creado en " + nombre;
-// Mensaje de confirmación
 					JOptionPane.showMessageDialog(this, texto, "Mensaje", JOptionPane.INFORMATION_MESSAGE, null);
 				} catch (Exception e) {
-					/*
-					 * En caso que se presente una excepción en la creación y escritura del archivo
-					 */
 					e.printStackTrace();
 				}
 			}
 		}
 	}
+
 } // clase
