@@ -91,7 +91,7 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
 
 				try {
 					String contenido = empleados.convertirTexto();
-					File file = new File(nombre + "\\nomina.txt");
+					File file = new File(nombre + "\\nomina.txt"); // idea: añadir LocalDate()
 					file.createNewFile();
 					FileWriter fw = new FileWriter(file);
 					BufferedWriter bw = new BufferedWriter(fw);

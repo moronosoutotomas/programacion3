@@ -8,7 +8,7 @@ public class ListaEmpleados {
 	public double totalNomina = 0;
 
 	public ListaEmpleados() {
-		lista = new ArrayList<Empleado>();
+		lista = new ArrayList();
 	}
 
 	/**
@@ -28,7 +28,7 @@ public class ListaEmpleados {
 	public double calcularTotalNomina() {
 		for (int i = 0; i < lista.size(); i++) {
 			Empleado e = (Empleado) lista.get(i);
-			totalNomina = totalNomina + e.calcularNomina();
+			totalNomina += e.calcularNomina();
 		}
 		return totalNomina;
 	}
@@ -37,6 +37,7 @@ public class ListaEmpleados {
 	 * Método que convierte los datos de la lista de empleados en una matriz
 	 */
 	public String[][] obtenerMatriz() {
+		totalNomina = 0;
 		String datos[][] = new String[lista.size()][3];
 		for (int i = 0; i < lista.size(); i++) {
 			Empleado e = (Empleado) lista.get(i);
