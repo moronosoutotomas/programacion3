@@ -8,7 +8,7 @@ public class ListaEmpleados {
 	public double totalNomina = 0;
 
 	public ListaEmpleados() {
-		lista = new ArrayList();
+		lista = new ArrayList<Empleado>();
 	}
 
 	/**

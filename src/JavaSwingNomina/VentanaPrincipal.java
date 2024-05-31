@@ -15,6 +15,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JSeparator;
 
+@SuppressWarnings("serial")
 public class VentanaPrincipal extends JFrame implements ActionListener {
 
 	private Container contenedor; // Un contenedor de elementos gráficos
@@ -39,18 +40,16 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
 	 * Método que crea la ventana con sus diferentes componentes gráficos
 	 */
 	public void inicio() {
-		contenedor = getContentPane(); /*
-										 * Obtiene el panel de contenidos de la ventana
-										 */
-		contenedor.setLayout(null); /*
-									 * Establece que el contenedor no tiene un layout
-									 */
-// Se crea la barra de menús, un menú y tres ítems de menú
+
+		contenedor = getContentPane(); // Obtiene el panel de contenidos de la ventana
+		contenedor.setLayout(null); // Establece que el contenedor no tiene un layout
+
 		barraMenu = new JMenuBar();
 		menuOpciones = new JMenu("Menú");
 		itemMenu1 = new JMenuItem("Agregar empleado");
 		itemMenu2 = new JMenuItem("Calcular nómina");
 		itemMenu3 = new JMenuItem("Guardar archivo");
+
 		menuOpciones.add(itemMenu1); // Se agrega el ítem de menú 1 al menú
 		menuOpciones.add(itemMenu2); // Se agrega el ítem de menú 2 al menú
 		menuOpciones.add(new JSeparator()); // Se agrega una línea divisoria
@@ -69,38 +68,42 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
 	 */
 	@Override
 	public void actionPerformed(ActionEvent evento) {
+
 		if (evento.getSource() == itemMenu1) {
 			VentanaAgregarEmpleado ventanaAgregar = new VentanaAgregarEmpleado(empleados);
 			ventanaAgregar.setVisible(true); // Se hace visible la ventana
 		}
+
 		if (evento.getSource() == itemMenu2) {
-			VentanaNómina ventanaNómina = new VentanaNómina(empleados);
-			ventanaNómina.setVisible(true);
+			VentanaNomina ventanaNomina = new VentanaNomina(empleados);
+			ventanaNomina.setVisible(true);
 		}
+
 		if (evento.getSource() == itemMenu3) {
 			JFileChooser fc = new JFileChooser();
 			fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
 
 			int respuesta = fc.showOpenDialog(this);
+
 			if (respuesta == JFileChooser.APPROVE_OPTION) {
 				File directorioElegido = fc.getSelectedFile();
-				String nombre = directorioElegido.getName();
+				String nombre = directorioElegido.getPath();
 
 				try {
 					String contenido = empleados.convertirTexto();
-					File file = new File(nombre + "\\" + "Nómina.txt");
+					File file = new File(nombre + "\\nomina.txt");
 					file.createNewFile();
 					FileWriter fw = new FileWriter(file);
 					BufferedWriter bw = new BufferedWriter(fw);
 					bw.write(contenido);
 					bw.close(); // Se cierra el archivo
-					String texto = "El archivo de la nómina Nómina.txt se ha creado en " + nombre;
+					String texto = "El archivo con las nóminas nomina.txt se ha creado en " + nombre;
 					JOptionPane.showMessageDialog(this, texto, "Mensaje", JOptionPane.INFORMATION_MESSAGE, null);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
 		}
-	}
+	} // método actionPerformed
 
 } // clase
