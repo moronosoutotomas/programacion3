@@ -31,4 +31,10 @@ public class ApartamentoFamiliar extends Apartamento {
 		return this.area * VALOR_AREA;
 	}
 
+	@Override
+	public double calcularComision() {
+		double res = super.calcularComision() + (valorAdministracion * 3);
+		return res;
+	}
+
 } // clase

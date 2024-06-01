@@ -1,6 +1,6 @@
 package Ej_4A;
 
-public class ConjuntoCerrado extends CasaUrbana {
+public class ConjuntoCerrado extends CasaUrbana implements Comision {
 
 	public static final int VALOR_AREA = 2250; // precio metro cuadrado
 	protected double valorAdministracion;
@@ -50,6 +50,18 @@ public class ConjuntoCerrado extends CasaUrbana {
 	@Override
 	public double calculaPrecioVenta() {
 		return this.area * VALOR_AREA;
+	}
+
+	@Override
+	public double calcularComision() {
+		double res = super.calcularComision();
+		if (hasCampoDeportivo()) {
+			res += 6000;
+		}
+		if (hasPiscina()) {
+			res += 5000;
+		}
+		return res;
 	}
 
 } // clase

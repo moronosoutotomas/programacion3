@@ -25,8 +25,8 @@ public class Casa extends Vivienda implements Comision {
 
 	@Override
 	public double calcularComision() {
-		double comision = 0;
-		comision += this.calculaPrecioVenta() * 1.05;
+		double comision = super.calcularComision();
+		comision += this.calculaPrecioVenta() * 0.05;
 		return comision;
 	}
 

@@ -1,6 +1,6 @@
 package Ej_4A;
 
-public class Vivienda extends Inmueble {
+public class Vivienda extends Inmueble implements Comision {
 
 	protected int numHabitaciones;
 	protected int numBaños;
@@ -30,6 +30,13 @@ public class Vivienda extends Inmueble {
 	@Override
 	public String toString() {
 		return "Vivienda [numHabitaciones=" + numHabitaciones + ", numBaños=" + numBaños + "]";
+	}
+
+	@Override
+	public double calcularComision() {
+		double comision = 0;
+		comision += (numHabitaciones * 300) + (numBaños * 200);
+		return comision;
 	}
 
 } // clase

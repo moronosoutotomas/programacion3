@@ -10,28 +10,26 @@ public class Empresa {
 	 * Método que aloja a los huéspedes en el hotel requerido cumpliendo la
 	 * normativa de la empresa.
 	 * 
-	 * @param n
+	 * @param huespedes
 	 */
-	static void indicarInfrastructura(int n) {
-		int huespedes = n;
-		if (n >= 18) {
+	static void indicarInfrastructura(int huespedes) {
+		int habitacionesDisponibles = hotel1.habitacionesLibres() + hotel2.habitacionesLibres()
+				+ hotel3.habitacionesLibres();
+		int huespedesRestantesHotel1 = 0;
+		int huespedesRestantesHotel2 = 0;
+
+		if (huespedes >= habitacionesDisponibles) {
 			System.out.println("Lo sentimos mucho, tenemos los hoteles llenos.");
 		} else {
-			while(huespedes <= 0) {
 			if (!hotel1.estaLleno()) {
-				huespedes -= hotel1.getCapacidad();
-				hotel1.setNumPersonas(hotel1.getCapacidad());
+				hotel1.reserva(huespedes);
+				huespedesRestantesHotel1 = hotel1.reserva(huespedes);
 			}
-
-			if (!hotel2.estaLleno()) {
-				huespedes -= hotel2.getCapacidad();
-				hotel2.setNumPersonas(hotel2.getCapacidad());
+			if (!hotel2.estaLleno() && huespedesRestantesHotel1 != 0) {
+				huespedesRestantesHotel2 = hotel2.reserva(huespedesRestantesHotel1);
 			}
-
-			if (!hotel3.estaLleno()) {
-				huespedes -= hotel3.getCapacidad();
-				hotel3.setNumPersonas(hotel3.getCapacidad());
-			}
+			if (huespedesRestantesHotel2 != 0) {
+				hotel3.reserva(huespedesRestantesHotel2);
 			}
 		}
 	}

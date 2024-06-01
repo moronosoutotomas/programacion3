@@ -2,7 +2,7 @@ package Ej_4A;
 
 import java.util.Objects;
 
-public class Inmueble {
+public class Inmueble implements Comision {
 
 	protected int idInmobiliario;
 	protected int area; // en metros cuadrados
@@ -59,6 +59,11 @@ public class Inmueble {
 
 	public double calculaPrecioVenta() {
 		return 0d;
+	}
+
+	@Override
+	public double calcularComision() {
+		return 0;
 	}
 
 }

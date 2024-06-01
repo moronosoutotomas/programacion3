@@ -1,6 +1,6 @@
 package Ej_4A;
 
-public class Local extends Inmueble {
+public class Local extends Inmueble implements Comision {
 
 	public enum tipo {
 		CALLE, INTERNO
@@ -25,6 +25,12 @@ public class Local extends Inmueble {
 	public String toString() {
 		return "Local [tipoLocal=" + tipoLocal + ", idInmobiliario=" + idInmobiliario + ", area=" + area
 				+ ", direccion=" + direccion + "]";
+	}
+
+	@Override
+	public double calcularComision() {
+		double comision = this.calculaPrecioVenta() * 0.03;
+		return comision;
 	}
 
 } // clase

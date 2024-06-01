@@ -1,6 +1,6 @@
 package Ej_4A;
 
-public class CasaRural extends Casa {
+public class CasaRural extends Casa implements Comision {
 
 	public static final int VALOR_AREA = 1750; // precio metro cuadrado
 	protected int distanciaCabecera;
@@ -37,6 +37,13 @@ public class CasaRural extends Casa {
 	@Override
 	public double calculaPrecioVenta() {
 		return this.area * VALOR_AREA;
+	}
+
+	@Override
+	public double calcularComision() {
+		double comision = super.calcularComision();
+		comision += (altitud * 5);
+		return comision;
 	}
 
 } // clase

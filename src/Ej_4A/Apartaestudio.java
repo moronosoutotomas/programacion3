@@ -17,7 +17,7 @@ public class Apartaestudio extends Apartamento {
 
 	@Override
 	public double calculaPrecioVenta() {
-		return this.area * VALOR_AREA;
+		return this.getArea() * VALOR_AREA;
 	}
 
 } // clase

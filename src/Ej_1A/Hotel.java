@@ -27,27 +27,43 @@ public class Hotel {
 	}
 
 	/**
-	 * Método que añade el número de personas pasadas por parámetro al hospedaje.
+	 * Método que añade el número de personas pasadas por parámetro al hospedaje si
+	 * caben en el hotel y sinó devuelve el número de huéspedes que no caben en el
+	 * susodicho hotel.
 	 * 
-	 * @param n
+	 * @param huespedes
+	 * @return número de huéspedes que quedan por reservar.
 	 */
-	public void lleganPersonas(int n) {
-		if (numPersonas < (this.getCapacidad()) - numPersonas)
-			numPersonas += n;
-		else
-			System.out.println("Lo sentimos mucho, no tenemos habitaciones suficientes.");
+	public int reserva(int huespedes) {
+		if (huespedes <= (this.habitacionesLibres())) {
+			numPersonas += huespedes;
+			return 0;
+		} else {
+			int huespedesRestantes = 0;
+			numPersonas += this.habitacionesLibres();
+			huespedesRestantes = huespedes - this.habitacionesLibres();
+			return huespedesRestantes;
+		}
 	}
 
 	/**
-	 * Método que elimina el número de personas pasadas por parámetro al hospedaje.
+	 * Método que elimina el número de personas pasadas por parámetro al hospedaje
+	 * de un hotel.
 	 * 
-	 * @param n
+	 * @param huespedes
+	 * @return número de personas que se quieren ir pero están alojadas en otra
+	 *         infrastructura de la empresa.
 	 */
-	public void marchanPersonas(int n) {
-		if (numPersonas >= n)
-			this.numPersonas -= n;
-		else
-			System.out.println("Error, no pueden irse mas personas de las que están alojadas en nuestros hoteles.");
+	public int marchanPersonas(int huespedes) {
+		if (huespedes <= numPersonas) {
+			numPersonas -= huespedes;
+			return 0;
+		} else {
+			int huespedesRestantes = 0;
+			huespedesRestantes = huespedes - numPersonas;
+			numPersonas = 0;
+			return huespedesRestantes;
+		}
 	}
 
 	/**
@@ -56,10 +72,20 @@ public class Hotel {
 	 * @return
 	 */
 	public boolean estaLleno() {
-		if (this.capacidad >= this.numPersonas)
+		if (this.capacidad == this.numPersonas)
 			return true;
 		else
 			return false;
+	}
+
+	/**
+	 * Número de habitaciones libres del hotel.
+	 * 
+	 * @return
+	 */
+	public int habitacionesLibres() {
+		int total = this.getCapacidad() - this.getNumPersonas();
+		return total;
 	}
 
 } // clase
