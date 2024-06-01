@@ -8,8 +8,8 @@ public class Cilindro extends FiguraGeometrica {
 	public Cilindro(double radio, double altura) {
 		this.radio = radio;
 		this.altura = altura;
-		this.setVolumen(calcularVolumen()); /* Calcula el volumen y establece su atributo */
-		this.setSuperficie(calcularSuperficie()); /* Calcula la superficie y establece su atributo */
+		this.setVolumen(calcularVolumen()); // Calcula el volumen y establece su atributo
+		this.setSuperficie(calcularSuperficie()); // Calcula la superficie y establece su atributo
 	}
 
 	/**
