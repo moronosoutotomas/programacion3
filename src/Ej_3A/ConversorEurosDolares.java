@@ -20,7 +20,7 @@ public class ConversorEurosDolares {
 	 * @param d
 	 * @return
 	 */
-	public double dolaresEuros(double d) {
+	public static double dolaresEuros(double d) {
 		double euros;
 		euros = 93.458; // aprox
 		return euros;

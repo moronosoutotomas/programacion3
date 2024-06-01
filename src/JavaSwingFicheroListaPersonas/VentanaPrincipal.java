@@ -25,7 +25,7 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
 	private JButton añadir, eliminar, borrarLista, guardar; // Botones
 	private JList jListListaPersonas; // Lista de personas
 	private DefaultListModel modeloJList; // Objeto que modela la lista
-	private JScrollPane scrollLista; // Barra de desplazamiento vertical - Interfaz gráfica de usuario 471
+	private JScrollPane scrollLista; // Barra de desplazamiento vertical
 
 	/**
 	 * Constructor de la clase VentanaPrincipal
