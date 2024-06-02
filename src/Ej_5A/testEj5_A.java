@@ -1,17 +1,14 @@
 package Ej_5A;
 
-import java.util.ArrayList;
-import java.util.Collections;
-
 public class testEj5_A {
 
 	public static void main(String[] args) {
 
-//		Conjunto de equipos para consultar las diveraas clasificaciones
-		ArrayList<Equipo> clasificacion = new ArrayList<Equipo>();
+//		La carrera
+		Carrera carrera = new Carrera("carrera", "Españita");
 
 //		Equipo 1
-		Equipo equipo1 = new Equipo("Equipo UNO", "Tui");
+		Equipo equipo1 = new Equipo("Equipo UNO", "A Guarda");
 //		ciclistas
 		Velocista vel1 = new Velocista(1, "Velocista equipo1", 31, 41);
 		Escalador esc1 = new Escalador(2, "Escalador equipo1", 11, 11);
@@ -44,7 +41,7 @@ public class testEj5_A {
 		equipo3.añadirCiclista(con3);
 
 //		Equipo 4
-		Equipo equipo4 = new Equipo("Equipo CUATRO", "A Guarda");
+		Equipo equipo4 = new Equipo("Equipo CUATRO", "Tui");
 //		ciclistas
 		Velocista vel4 = new Velocista(11, "Velocista equipo1", 34, 44);
 		Escalador esc4 = new Escalador(12, "Escalador equipo1", 14, 14);
@@ -55,28 +52,55 @@ public class testEj5_A {
 		equipo4.añadirCiclista(con4);
 
 //		equipos añadidos a la clasificación
-		clasificacion.add(equipo1);
-		clasificacion.add(equipo2);
-		clasificacion.add(equipo3);
-		clasificacion.add(equipo4);
+		carrera.añadirEquipo(equipo1);
+		carrera.añadirEquipo(equipo2);
+		carrera.añadirEquipo(equipo3);
+		carrera.añadirEquipo(equipo4);
 
-//////	ETAPA 1		
-		System.out.println("\nCLASIFICACIÓN POR EQUIPOS");
-
-		for (Equipo e : clasificacion) {
-//		Preparación de la etapa: todos corren la etapa.
+//		ETAPA 1
+		System.out.println("·········· ETAPA 1 ··········");
+		for (Equipo e : carrera.listaEquipos) {
 			for (Ciclista c : e.listaCiclistas) {
 				c.calculaTiempoParcial();
 				c.acumulaTiempoTotal();
-				System.out.println(c.getNombre() + " hizo " + c.getTiempoParcial() + " en la primera etapa");
+//		ciclistas añadidos a la clasificación
+				carrera.clasificacionGeneral.add(c);
 			}
-
-// 			Calculamos el total del tiempo por equipo
-			e.calcularTotalTiempo();
-//			Ordenamos la clasificación
-			Collections.sort(clasificacion);
-			System.out.println("Tiempo total del " + e.getNombre() + ": " + e.getTotalTiempo());
 		}
+		carrera.calculaYMuestraTiemposGenerales();
+
+//		ETAPA 2
+		System.out.println("·········· ETAPA 2 ··········");
+		for (Equipo e : carrera.listaEquipos) {
+			for (Ciclista c : e.listaCiclistas) {
+				c.calculaTiempoParcial();
+				c.acumulaTiempoTotal();
+				carrera.clasificacionGeneral.add(c);
+			}
+		}
+		carrera.calculaYMuestraTiemposGenerales();
+
+//		ETAPA 3
+		System.out.println("·········· ETAPA 3 ··········");
+		for (Equipo e : carrera.listaEquipos) {
+			for (Ciclista c : e.listaCiclistas) {
+				c.calculaTiempoParcial();
+				c.acumulaTiempoTotal();
+				carrera.clasificacionGeneral.add(c);
+			}
+		}
+		carrera.calculaYMuestraTiemposGenerales();
+
+//		ETAPA 4
+		System.out.println("·········· ETAPA 4 ··········");
+		for (Equipo e : carrera.listaEquipos) {
+			for (Ciclista c : e.listaCiclistas) {
+				c.calculaTiempoParcial();
+				c.acumulaTiempoTotal();
+				carrera.clasificacionGeneral.add(c);
+			}
+		}
+		carrera.calculaYMuestraTiemposGenerales();
 
 	} // main
 } // clase

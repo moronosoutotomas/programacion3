@@ -86,7 +86,7 @@ public abstract class Ciclista {
 	 */
 	public void calculaTiempoParcial() {
 		Random random = new Random();
-		this.tiempoAcumulado += random.nextInt(16) + 5; // OJO! Esto va acumulando...
+		this.tiempoParcial += random.nextInt(16) + 5; // OJO! Esto va acumulando...
 	}
 
 	/**
@@ -107,7 +107,7 @@ public abstract class Ciclista {
 	 * Método que muestra en pantalla los datos de un ciclista
 	 */
 	public void imprimir() {
-		System.out.println("Identificador = " + identificador);
+		System.out.println("\nIdentificador = " + identificador);
 		System.out.println("Nombre = " + nombre);
 		System.out.println("Tiempo Parcial = " + tiempoParcial);
 		System.out.println("Tiempo Acumulado = " + tiempoAcumulado);
