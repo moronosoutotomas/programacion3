@@ -29,6 +29,7 @@ public class Escalador extends Ciclista {
 
 	/**
 	 * Método muestra en pantalla la clase a la que pertenece el objeto.
+	 * 
 	 * @return El tipo de la clase.
 	 */
 	@Override
@@ -42,6 +43,13 @@ public class Escalador extends Ciclista {
 		super.imprimir();
 		System.out.println("Aceleración promedio = " + aceleracionPromedio);
 		System.out.println("Grado promedio = " + gradoRampa);
+	}
+
+	@Override
+	public void calculaTiempoParcial() {
+		double vel = this.aceleracionPromedio * 3;
+		this.setTiempoAcumulado(this.getTiempoAcumulado() + vel);
+		super.calculaTiempoParcial();
 	}
 
 } // clase

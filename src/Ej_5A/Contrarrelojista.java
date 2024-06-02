@@ -34,4 +34,11 @@ public class Contrarrelojista extends Ciclista {
 		System.out.println("Velocidad máxima = " + velocidadMaxima);
 	}
 
+	@Override
+	public void calculaTiempoParcial() {
+		double vel = this.velocidadMaxima * 5;
+		this.setTiempoAcumulado(this.getTiempoAcumulado() + vel);
+		super.calculaTiempoParcial();
+	}
+
 } // clase

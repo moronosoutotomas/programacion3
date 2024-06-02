@@ -29,6 +29,7 @@ public class Velocista extends Ciclista {
 
 	/**
 	 * Método muestra en pantalla la clase a la que pertenece el objeto.
+	 * 
 	 * @return El tipo de la clase.
 	 */
 	@Override
@@ -42,6 +43,13 @@ public class Velocista extends Ciclista {
 		super.imprimir();
 		System.out.println("Potencia promedio = " + potenciaPromedio);
 		System.out.println("Velocidad promedio = " + velocidadPromedio);
+	}
+
+	@Override
+	public void calculaTiempoParcial() {
+		double vel = this.velocidadPromedio * 4;
+		this.setTiempoAcumulado(this.getTiempoAcumulado() + vel);
+		super.calculaTiempoParcial();
 	}
 
 } // clase

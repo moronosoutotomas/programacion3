@@ -3,10 +3,10 @@ package Ej_5A;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Equipo {
+public class Equipo implements Comparable<Equipo> {
 
 	private String nombre; // Atributo que define el nombre del equipo de ciclismo
-	private static double totalTiempo; // Atributo que define el tiempo total obtenido por el equipo
+	private double totalTiempo; // Atributo que define el tiempo total obtenido por el equipo
 	private String pais; // Atributo que define el país al que pertenece el equipo
 	private int posicion;
 	ArrayList<Ciclista> listaCiclistas; // Atributo que define un ArrayList de ciclistas
@@ -146,4 +146,8 @@ public class Equipo {
 		System.out.println("Total tiempo del equipo = " + totalTiempo);
 	}
 
+	@Override
+	public int compareTo(Equipo e) {
+		return Double.compare(this.totalTiempo, e.totalTiempo);
+	}
 } // clase

@@ -1,5 +1,7 @@
 package Ej_5A;
 
+import java.util.Random;
+
 public abstract class Ciclista {
 
 	private int identificador; // identificador de un ciclista
@@ -79,11 +81,12 @@ public abstract class Ciclista {
 	}
 
 	/**
-	 * Método que genera aleatoriamente el tiempo parcial de un ciclista (entre 120
-	 * y 180)
+	 * Método que genera aleatoriamente el tiempo parcial de un ciclista (entre 5 y
+	 * 20)
 	 */
 	public void calculaTiempoParcial() {
-		this.tiempoParcial = 120 + Math.random() * 60;
+		Random random = new Random();
+		this.tiempoAcumulado += random.nextInt(16) + 5; // OJO! Esto va acumulando...
 	}
 
 	/**
