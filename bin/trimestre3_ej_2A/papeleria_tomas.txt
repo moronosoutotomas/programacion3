@@ -1,0 +1,38 @@
+Orden id= 1
+Total orden: 1105€
+Lineas pedido: 
+
+Producto:  Carpeta
+	Precio unitario: 81.6025619506836€
+	Cantidad: 4 uds 
+	Total linea:326.4102478027344€
+
+Producto:  Tinta
+	Precio unitario: 49.221229553222656€
+	Cantidad: 1 uds 
+	Total linea:49.221229553222656€
+
+Producto:  Cinta Adhesiva
+	Precio unitario: 17.494150161743164€
+	Cantidad: 1 uds 
+	Total linea:17.494150161743164€
+
+Producto:  Cartulina
+	Precio unitario: 126.84712219238281€
+	Cantidad: 3 uds 
+	Total linea:380.54136657714844€
+
+Producto:  Pegamento
+	Precio unitario: 77.427490234375€
+	Cantidad: 3 uds 
+	Total linea:232.282470703125€
+
+Producto:  Lapiz
+	Precio unitario: 25.325599670410156€
+	Cantidad: 4 uds 
+	Total linea:101.30239868164062€
+
+=========== TOTALES ===========
+· Sin IVA: 1105€
+· IVA: 17%
+· TOTAL: 917.15€
